@@ -6,7 +6,7 @@ using namespace cv;
 
 void initialize(){
     //读取设置文件
-    FileStorage _fs("file\\SettingFile.xml", FileStorage::READ);
+    FileStorage _fs("file/SettingFile.xml", FileStorage::READ);
     if(!_fs.isOpened())
     {
         cout << "failed to open SettingFile.xml" << endl;
@@ -52,10 +52,11 @@ void Calibration::destoryInstance()
 
 bool Calibration::initComprehensiveParameters()
 {
-//    cout<<"$$$$$$$$$$$$$$$$$: "<<calibrationSettingFile_path<<endl;
+    cout<<"$$$$$$$$$$$$$$$$$: "<<calibrationSettingFile_path<<endl;
     FileStorage _fs(calibrationSettingFile_path, FileStorage::READ);
 //    cout<<"%%%%%%%%%%%%%%%%%%%%%%%%%%%"<<endl;
-    if(!_fs.isOpened()){
+    if(!_fs.isOpened())
+	{
         cout << "Fail to open calibrationSettingFile.xml" << endl;
         return false;
     }

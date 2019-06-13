@@ -16,8 +16,8 @@ int N_BLOCKS=20;//将鸟瞰图按照垂直方向划分为N_BLOCKS个区域块
 int block_height;//每个区域块的像素高度
 int block_width;//每个区域块的像素宽度
 
-int main(){
-
+int main()
+{
     Mat frame;
     Mat frame_copy;
     Point2d P1,P2,P3,P4;//用于透视变换的四个点
@@ -28,7 +28,8 @@ int main(){
 
     ifstream videolist;
     videolist.open((video_path+"list.txt").c_str());
-    if(!videolist.is_open()){
+    if(!videolist.is_open())
+	{
         cout<<"no videolist"<<endl;
         return 0;
     }
@@ -37,10 +38,10 @@ int main(){
     string videoname;
 
     VideoWriter writer;
-    writer.open("D:\\video\\LDW_VIDEO\\show_video1.avi",CV_FOURCC('M','P','4','2'),30,Size(1280,720));
+    writer.open("show_video1.avi", writer.fourcc('M','J','P','G'),30,Size(1280,720));
 
-    while(getline(videolist, videoname)){
-
+    while(getline(videolist, videoname))
+	{
         videoname=video_path+videoname;
         cap.open(videoname);
 
@@ -82,7 +83,7 @@ int main(){
             for(int i=0;i<N_BLOCKS;i++){
 
                 Mat b_copy=M_blocks[i].clone();
-                cvtColor(b_copy,b_copy,CV_RGB2GRAY);//灰度化
+                cvtColor(b_copy,b_copy,COLOR_RGB2GRAY);//灰度化
                 generate_binary_image(b_copy,light_threshold);//二值化
                 blur(b_copy,b_copy,Size(5,5));//均值滤波
                 Canny(b_copy,b_copy,30,60);//Canny边缘检测
